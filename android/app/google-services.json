@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "687544141835",
+    "project_id": "chatnet-c1d22",
+    "storage_bucket": "chatnet-c1d22.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:687544141835:android:ab6959cdd1b2d957985f0e",
+        "android_client_info": {
+          "package_name": "com.example.chat_net"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "687544141835-fgee93j07q60m0mdlm1vvprhu44nh83m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chat_net",
+            "certificate_hash": "e36fe7393c486f27e56846f1f40d2cbc6a4cbad0"
+          }
+        },
+        {
+          "client_id": "687544141835-85mpgt42jrbievdkb1rtj8k4rjbkn78u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEa-WvQza12l42KQfqOd-wSr_ySHdLek0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "687544141835-85mpgt42jrbievdkb1rtj8k4rjbkn78u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
