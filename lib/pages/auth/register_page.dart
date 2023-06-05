@@ -1,4 +1,7 @@
+import 'package:chat_net/helper/helper_function.dart';
 import 'package:chat_net/pages/auth/login_page.dart';
+import 'package:chat_net/pages/home_page.dart';
+import 'package:chat_net/service/auth_service.dart';
 import 'package:chat_net/widgets/widgets.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -11,14 +14,16 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  bool isLoading = false;
   final _formKey = GlobalKey<FormState>();
   String email = '';
   String password = '';
   String fullName = '';
+  AuthService authService = AuthService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      body: isLoading? const Center(child: CircularProgressIndicator()) : SingleChildScrollView(
         child: SafeArea(
           child: Container(
             // color: Colors.amberAccent,
@@ -133,7 +138,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     margin: const EdgeInsets.only(left: 20, right: 20),
                     child: ElevatedButton(
                       onPressed: (){
-                        login();
+                        register();
                       },
                       child: const Text('Register', style: TextStyle(fontSize: 16),),
                       style: ElevatedButton.styleFrom(
@@ -171,9 +176,25 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
   }
-  login() {
+  register() async {
     if(_formKey.currentState!.validate()){
-
+      setState(() {
+        isLoading = true;
+      });
+      await authService.registerUserWithEmailAndPassword(email, fullName, password).then((value) async{
+        if(value == true){
+          // saving the shared preference state
+          await HelperFunction.saveUserLoggedInStatus(true);
+          await HelperFunction.saveUserEmailSF(email);
+          await HelperFunction.saveUserNameSF(fullName);
+          nextScreenReplacement(context, const HomePage());
+        }else{
+          showSnackBar(context, Colors.red, value);
+          setState(() {
+            isLoading = false;
+          });
+        }
+      });
     }
   }
 }
